@@ -80,6 +80,9 @@ export async function createAntigravityWorkspaceServices(
   return {
     cliResolver,
     settingsTabRenderer: antigravitySettingsTabRenderer,
+    async prepareSettings() {
+      await refreshModelCatalog();
+    },
     refreshModelCatalog,
     async dispose() {
       cliResolver.reset();
