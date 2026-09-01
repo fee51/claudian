@@ -11,6 +11,8 @@
  */
 
 export interface AntigravityLaunchSpecOptions {
+  /** Directories added to the agy workspace via repeatable --add-dir. */
+  addDirs?: readonly string[];
   autoApprovePermissions: boolean;
   conversationId?: string | null;
   cwd: string;
@@ -60,6 +62,11 @@ export function buildAntigravityLaunchSpec(
     '--input-format',
     'text',
   ];
+  for (const dir of options.addDirs ?? []) {
+    if (dir.trim()) {
+      args.push('--add-dir', dir);
+    }
+  }
   if (options.conversationId) {
     args.push('--conversation', options.conversationId);
   }

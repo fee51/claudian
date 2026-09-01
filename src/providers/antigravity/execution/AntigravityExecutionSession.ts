@@ -285,6 +285,7 @@ export class AntigravityExecutionSession implements ProviderExecutionSession {
     };
     const executablePath = (await this.host.getResolvedProviderCliPath('antigravity')) ?? 'agy';
     const launchSpec = buildAntigravityLaunchSpec({
+      addDirs: [this.config.vaultWorkingDirectory],
       autoApprovePermissions,
       conversationId,
       cwd: this.config.vaultWorkingDirectory,
